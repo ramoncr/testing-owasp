@@ -9,7 +9,7 @@ namespace TestProject1._2._SSRF;
 /// </summary>
 internal class SSRFPlaywrightTest : PlaywrightTest
 {
-    private const string YourUniqueLabId = "0a6900b404e2dcb6c0a35ee4009100c6";
+    private const string YourUniqueLabId = "<your-unique-lab-id>";
 
     private IAPIRequestContext Request = null;
 
@@ -36,15 +36,8 @@ internal class SSRFPlaywrightTest : PlaywrightTest
     [Ignore("Current API implementation on the portswigger returns gzip header when content is plain. Please use native HTTP Client")]
     public async Task ValidateSSRFPlaywright()
     {
-        var data = Request.CreateFormData();
-        data.Set("stockApi", "http://192.168.0.1:8080/admin");
-
-        var response = await Request.PostAsync("/product/stock", new APIRequestContextOptions
-        {
-            Form = data,
-        });
-
-        Assert.That(response.Ok, Is.True);
+        // This test can result in a unexpected return from the API, see the ignore tag above. Please considere implementing this using the native HTTP client.
+        //= Your code here =//
     }
 }
 
