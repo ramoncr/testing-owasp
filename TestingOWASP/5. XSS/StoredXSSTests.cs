@@ -35,7 +35,11 @@ namespace TestProject1._5._XSS
             // Go to page
             await Page.Locator("xpath=/html/body/div[2]/section/div/section[2]/div[1]/a[2]").ClickAsync();
 
-            //= Your code here =//
+            // Fill comment information
+            await Page.Locator("[name=comment]").FillAsync("<script>alert('HakcED!')</script>");
+            await Page.Locator("[name=name]").FillAsync("MaliciousHackerMan");
+            await Page.Locator("[name=email]").FillAsync("muhhahah@evilcorp.com");
+            await Page.Locator("[name=website]").FillAsync("https://localhost");
 
             // Submit commit information
             await Page.ClickAsync("xpath=/html/body/div[2]/section/div/div/div/section/form/button");
