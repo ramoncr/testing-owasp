@@ -3,7 +3,7 @@ Please execute the following steps on the first run.
 1. Build the project
 2. Open a powershell window in the project directory
 3. Execute 'bin/Debug/net6.0/playwright.ps1 install', this will install the required dependencies for Playwright (Like the browsers, tools for screenshots, etc.). See [https://playwright.dev/dotnet/docs/intro](https://playwright.dev/dotnet/docs/intro) for more information.
-4. Let's have some fun
+4. Verify the installation was succesfull by running the example playwright test (test 0).
 
 # Portswigger Lab Tests
 The test aiming add the portswigger labs contain a class summary with the reference to which lab the belong.
